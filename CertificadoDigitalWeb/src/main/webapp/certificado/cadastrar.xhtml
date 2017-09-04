@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Cadastrar</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    </h:head>
+    <h:body>
+        <h3>Envio de certificado</h3>
+        <h:form enctype="multipart/form-data">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <h:outputLabel value="Nome" for="nome" />
+                        </div>
+
+                        <div class="col-lg-4">
+                            <h:inputText id="nome" value="#{certificado.certificado.nome}" required="true"
+                                         requiredMessage="Campo nome é obrigatorio."/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <h:outputLabel value="Certificado (PEM)" for="certificado" />
+                        </div>
+
+                        <div class="col-lg-4">
+                            <h:inputFile id="certificado" value="#{certificado.certificadoDigital}" required="true" 
+                                         validator="#{certificado.validateFile}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h:panelGrid columns="2">
+                            <h:commandButton class="btn btn-primary" action="#{certificado.salvar()}" value="Salvar"/>
+                        
+                            <a class="btn btn-block" href="detalhes.xhtml" >Voltar</a>
+                            
+                        </h:panelGrid>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

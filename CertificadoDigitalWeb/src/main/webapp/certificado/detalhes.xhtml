@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Detalhes</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="container">
+                <h:form rendered="#{certificado.renderizarForm}">
+                    <h:dataTable class="table" value="#{certificado.getAll()}" var="certif" >
+                        <h:column>
+                            <f:facet name="header" >ID</f:facet>
+                            #{certif.id}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header" >Nome</f:facet>
+                            #{certif.nome}
+                        </h:column>
+
+                        <h:column>
+                            <h:commandLink value="Detalhes" action="#{certificado.mostrarDetalhes(certif)}" />
+                        </h:column>
+                    </h:dataTable>
+
+                    <h:commandLink value="Enviar Certificado" action="cadastrar" />
+                </h:form>
+
+                <h:form>
+                    <h:panelGrid columns="2" rendered="#{certificado.renderizarDetalhes}">
+                        <h:outputLabel value="Nome:" />
+                        <h:outputLabel value="#{certificado.certificado.nome}" />
+
+                        <h:outputLabel value="Certificado:" />
+                        <h:outputLabel value="#{certificado.certificado.certificado}" />
+
+                        <h:commandButton class="btn btn-primary" value="Voltar" action="#{certificado.voltar()}" />
+                        <h:commandButton class="btn btn-danger" value="Excluir" action="#{certificado.deletar()}" />
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+
